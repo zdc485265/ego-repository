@@ -1,0 +1,120 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>cn.gzsxt.ego</groupId>
+    <artifactId>ego-parent</artifactId>
+    <version>1.0</version>
+  </parent>
+  <groupId>cn.gzsxt.ego</groupId>
+  <artifactId>ego-order</artifactId>
+  <version>1.0</version>
+  <packaging>war</packaging>
+  <dependencies>
+  		<dependency>
+  			<groupId>cn.gzsxt.ego</groupId>
+			<artifactId>ego-manager-mapper</artifactId>
+			<version>1.0</version>
+  		</dependency>
+  		<dependency>
+  			<groupId>cn.gzsxt.ego</groupId>
+			<artifactId>ego-dubbo-server-api</artifactId>
+			<version>1.0</version>
+  		</dependency>
+		<dependency>
+  			<groupId>cn.gzsxt.ego</groupId>
+			<artifactId>ego-common</artifactId>
+			<version>1.0</version>
+  		</dependency>
+  		<!-- Spring -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
+ 		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+		</dependency>
+		
+		<!-- spring jdbc+事物 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+		</dependency>
+		
+		<!-- 事物依赖切面，要导入切面的包 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+		</dependency>
+		
+		<!-- springmvc依赖 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+		<!-- jdbc驱动 -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		<!-- 连接池 -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+		</dependency>
+		
+		<!-- mybatis整合spring依赖包 -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+		</dependency>
+		<!-- Jackson Json处理工具包 -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.6.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>dubbo</artifactId>
+			<version>2.5.3</version>
+			<exclusions>
+				<exclusion>
+					<!-- 排除传递spring依赖 -->
+					<artifactId>spring</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.zookeeper</groupId>
+			<artifactId>zookeeper</artifactId>
+			<version>3.3.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.sgroschupf</groupId>
+			<artifactId>zkclient</artifactId>
+			<version>0.1</version>
+		</dependency>
+  </dependencies>
+  
+  <build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<port>8085</port>
+					<path>/</path>
+					<uriEncoding>utf-8</uriEncoding>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

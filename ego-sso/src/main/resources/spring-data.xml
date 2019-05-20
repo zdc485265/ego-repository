@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+ 	<context:property-placeholder file-encoding="utf-8" location="classpath:*.properties"/>
+	 <!-- 1、创建数据源
+		jdbc四要素
+	 -->
+	 <bean name="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+	 	<property name="driverClassName" value="${jdbc.driver}"/>
+	 	<property name="url" value="${jdbc.url}"/>
+	 	<property name="username" value="${jdbc.username}"/>
+	 	<property name="password" value="${jdbc.password}"/>
+	 	
+	 	<!-- 初始化最大连接数 -->
+	 	<property name="maxActive" value="10"></property>
+	 	<!-- 最小空闲数 -->
+	 	<property name="minIdle" value="2"></property>
+	 </bean>
+	 
+	 <!-- 2、mybatis整合spring 
+	 	因为dataSource是交给spring在管理，所有mybatis要使用数据源，就必须整合到spring中。
+	 -->
+	 <bean name="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+	 		<property name="dataSource" ref="dataSource"></property>
+	 		<property name="mapperLocations" value="classpath:cn/gzsxt/manager/mapper/*Mapper.xml"></property>
+	 		
+	 </bean>
+
+	 <!-- 3、配置mybatis，生成动态代理 -->
+	 <bean name="apperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+	 		<!-- 指定给哪个工厂生成代理 -->
+	 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryBean"></property>
+	 		<!-- 指定接口所在包 -->
+	 		<property name="basePackage" value="cn.gzsxt.manager.mapper"></property>
+	 </bean>
+	 
+	 <!-- 4、配置事物管理器 -->
+	 <bean name="tm" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	 		<property name="dataSource" ref="dataSource"></property>
+	 </bean>
+	 
+	 <!-- 5、定义事物的规则 -->
+	 <tx:advice id="tx" transaction-manager="tm">
+	 		<tx:attributes>
+	 			<!-- isolation="DEFAULT" 事物的隔离级别，也叫做READ_COMMINTED
+	 			     propagation="REQUIRED"   事物的传播行为
+	 			     rollback-for="EXCEPTION"  回滚机制。
+	 			                          在service层，如果手动处理了异常，事物不会自动回滚。
+	 			          rollback-for="EXCEPTION"作用：在有异常时，强制回滚事物。
+	 			 -->
+	 			<tx:method name="insert*" isolation="DEFAULT" propagation="REQUIRED" rollback-for="EXCEPTION"/>
+	 			<tx:method name="save*" isolation="DEFAULT" propagation="REQUIRED" rollback-for="EXCEPTION"/>
+	 			<tx:method name="delete*" isolation="DEFAULT" propagation="REQUIRED" rollback-for="EXCEPTION"/>
+	 			<tx:method name="update*" isolation="DEFAULT" propagation="REQUIRED" rollback-for="EXCEPTION"/>
+	 			
+	 			<tx:method name="select*" read-only="true"/>
+	 			<tx:method name="get*" read-only="true"/>
+	 			<tx:method name="login*" read-only="true"/>
+	 		</tx:attributes>
+	 </tx:advice>
+	 
+	 <!-- 6、定义事物的切面 -->
+	 <aop:config>
+	 	<aop:pointcut expression="execution(* cn.gzsxt.sso.service.*.*(..))" id="pointcut"/>
+	 	<aop:advisor advice-ref="tx" pointcut-ref="pointcut"/>
+	 </aop:config>
+
+</beans>

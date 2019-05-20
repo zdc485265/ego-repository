@@ -1,0 +1,86 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>cn.gzsxt.ego</groupId>
+    <artifactId>ego-manager</artifactId>
+    <version>1.0</version>
+  </parent>
+  <artifactId>ego-manager-web</artifactId>
+  <packaging>war</packaging>
+  <dependencies>
+  		<!-- 添加service依赖 -->
+	    <dependency>
+	  		<groupId>cn.gzsxt.ego</groupId>
+	    	<artifactId>ego-manager-service</artifactId>
+	    	<version>1.0</version>
+	    </dependency>
+	     <!-- servlet及jsp、jstl依赖 -->
+  		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jsp-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		
+		<!-- 
+			spring最小的pom依赖配置
+			
+			如果实在记不清，给每一个包单独添加pom也是可行的。
+				
+		 -->
+ 			<!-- spring核心包  4个核心组件+日志包 -->
+ 			<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
+		<!-- spring-jdbc及事物依赖 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+		</dependency>
+		<!-- spring切面依赖 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+		</dependency>
+		<!-- springmvc  及  spring-web依赖 -->
+ 			<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+	<!-- 导入mybatis相关依赖 -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+		</dependency>
+		<!-- mysql连接驱动 -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		<!-- 连接池 -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+		</dependency>
+	    <!-- Jackson Json处理工具包 -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+	    <!-- 文件上传组件 -->
+		<dependency>
+				<groupId>commons-fileupload</groupId>
+				<artifactId>commons-fileupload</artifactId>
+		</dependency>
+	    
+  </dependencies>
+</project>

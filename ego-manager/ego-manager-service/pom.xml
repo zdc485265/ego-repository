@@ -1,0 +1,34 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>cn.gzsxt.ego</groupId>
+    <artifactId>ego-manager</artifactId>
+    <version>1.0</version>
+  </parent>
+  <artifactId>ego-manager-service</artifactId>
+<dependencies>
+  		<!-- 添加mapper依赖 -->
+	    <dependency>
+	  		<groupId>cn.gzsxt.ego</groupId>
+	    	<artifactId>ego-manager-mapper</artifactId>
+	    	<version>1.0</version>
+	    </dependency>
+	    <!-- 添加common依赖 -->
+	    <dependency>
+	  		<groupId>cn.gzsxt.ego</groupId>
+	    	<artifactId>ego-common</artifactId>
+	    	<version>1.0</version>
+	    </dependency>
+	     <!-- spring核心包  4个核心组件+日志包 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
+	    <!-- 因为service要接收springmvc绑定的图片形参，所以需要web依赖的支持 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+	    
+  </dependencies>
+</project>

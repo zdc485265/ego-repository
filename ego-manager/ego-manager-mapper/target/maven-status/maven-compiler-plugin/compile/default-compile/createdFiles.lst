@@ -1,0 +1,11 @@
+cn\gzsxt\manager\mapper\UserMapper.class
+cn\gzsxt\manager\mapper\ItemParamMapper.class
+cn\gzsxt\manager\mapper\OrderMapper.class
+cn\gzsxt\manager\mapper\ItemParamItemMapper.class
+cn\gzsxt\manager\mapper\ItemMapper.class
+cn\gzsxt\manager\mapper\OrderItemMapper.class
+cn\gzsxt\manager\mapper\ContentMapper.class
+cn\gzsxt\manager\mapper\ItemDescMapper.class
+cn\gzsxt\manager\mapper\ItemCatMapper.class
+cn\gzsxt\manager\mapper\OrderShippingMapper.class
+cn\gzsxt\manager\mapper\ContentCategoryMapper.class

@@ -1,0 +1,4 @@
+cn\gzsxt\sso\controller\UserController.class
+cn\gzsxt\sso\controller\PageController.class
+cn\gzsxt\sso\service\UserService.class
+cn\gzsxt\sso\service\impl\UserServiceImpl.class
